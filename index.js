@@ -20,7 +20,6 @@ app.post('/decode', function(req, res) {
     var data = req.body.data;
     console.log("Request data is:"+data);
     const decoder = new InputDataDecoder(config.abi[abiname]);
-    //const data = `0xa9059cbb000000000000000000000000a55a2be195041d7176a9f55020f86266a779c01e0000000000000000000000000000000000000000000000056bc75e2d63100000`;
     const result = decoder.decodeData(data);
     console.log(result.name);
     if (result.name == "transfer"){
