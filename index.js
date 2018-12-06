@@ -13,7 +13,7 @@ const InputDataDecoder = require('ethereum-input-data-decoder');
 app.post('/decode', function(req, res) {
     var resdata = {
         code :0,
-        msg: "解析失败",
+        msg: "fail",
         data: null
     }
     var abiname = req.body.abi;
@@ -25,7 +25,7 @@ app.post('/decode', function(req, res) {
     if (result.name == "transfer"){
         console.log(result.inputs[1].toString(10));
         resdata.code = 1;
-        resdata.msg = "解析成功";
+        resdata.msg = "ok";
         resdata.data = {
             method:result.name,
             address:"0x"+result.inputs[0].toString(),
