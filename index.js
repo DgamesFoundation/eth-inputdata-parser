@@ -20,9 +20,14 @@ app.post('/decode', function(req, res) {
     var data = req.body.data;
     console.log("Request data is:"+data);
     const decoder = new InputDataDecoder(config.abi[abiname]);
-    const result = decoder.decodeData(data);
-    console.log(result.name);
-    if (result.name == "transfer"){
+    var result = null;
+    try {
+        result = decoder.decodeData(data);
+    }catch(err){
+        result = false;
+    }
+
+    if (result && result.name == "transfer"){
         console.log(result.inputs[1].toString(10));
         resdata.code = 1;
         resdata.msg = "ok";
